@@ -22,12 +22,34 @@ class card():
     def get_non_atout_value(self):
         return self.non_atout_value
 
-    def get_suit(self):
-        return self.suit
+    def get_suit(self, symbol = False):
+        if not symbol:
+            return self.suit
+        else:
+            if self.suit == "Spades":
+                return "♠"
+            elif self.suit == "Hearts":
+                return "♥"
+            elif self.suit == "Diamonds":
+                return "♦"
+            elif self.suit == "Clubs":
+                return "♣"
 
-    def get_rank(self):
-        return self.rank
-    
+    def get_rank(self, symbol = False):
+        if not symbol:
+            return self.rank
+        else:
+            if self.rank == 11:
+                return "J"
+            elif self.rank == 12:
+                return "Q"
+            elif self.rank == 13:
+                return "K"
+            elif self.rank == 1:
+                return "A"
+            else:
+                return self.rank
+
     def __str__(self) -> str:
         atout_string = "is atout" if self.atout else "is not atout"
         return self.suit + " " + str(self.rank) + " " + atout_string
@@ -50,7 +72,7 @@ class cardDeck():
     def __len__(self):
         return len(self.deck)
     
-    def shuffle(self, times = 3):
+    def shuffle(self, times = 20):
         for i in range(times):
             cut = random.randint(0, len(self) - 1)
             first = self.deck[:cut]

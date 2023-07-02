@@ -49,3 +49,28 @@ class player:
         assert isinstance(card, deck.card) and card in self.hand
         self.hand.remove(card)
         return card
+
+    def print_hand(self):
+        #   __ __ ___
+        #  /7 /8 /9  \
+        #  |♠ |♥ |♦  |
+        
+        # use the card format to print the hand
+        # print the hand in a nice format
+        for i in range(len(self.hand)):
+            print(" __", end = "")
+        print("")
+        for i in range(len(self.hand)):
+            print("/" + str(self.hand[i].get_rank(symbol=True)).ljust(2), end = "")
+        print("\\")
+        for i in range(len(self.hand)):
+            print("|" + self.hand[i].get_suit(symbol=True), end = " ")
+        print(" |")
+        
+player1 = player("Romain")
+deck = deck.cardDeck()
+deck.shuffle(times=100)
+
+# distribute 3 cards to player1
+player1.add_cart_list(deck.distribute(8))
+player1.print_hand()
